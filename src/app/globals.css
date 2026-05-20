@@ -1,26 +1,39 @@
 @import "tailwindcss";
+@import "@fontsource-variable/playfair-display";
+@import "@fontsource-variable/inter";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-crimson:       #8B1A1A;
+  --color-crimson-dark:  #6B0F0F;
+  --color-crimson-light: #A82828;
+  --color-gold:          #D4A017;
+  --color-gold-light:    #F0C030;
+  --color-blue-accent:        #4A7DB5;
+  --color-blue-accent-light:  #8FB4DD;
+  --color-surface:       #F8FAFC;
+  --color-surface-dark:  #E2E8F0;
+  --color-cream:         #F8FAFC;
+  --color-cream-dark:    #E2E8F0;
+
+  --font-heading: "Playfair Display Variable", Georgia, serif;
+  --font-body:    "Inter Variable", system-ui, sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+  color: #1C1C1C;
+  background-color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
 }
