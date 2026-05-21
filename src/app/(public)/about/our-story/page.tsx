@@ -19,6 +19,23 @@ export default function OurStoryPage() {
         </div>
       </div>
 
+      {/* Hero image */}
+      <div className="bg-white">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 sm:-mt-12 relative z-10">
+          <figure className="rounded-2xl overflow-hidden shadow-xl ring-1 ring-black/5 aspect-[16/9] bg-[var(--color-surface-dark)]">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/student-photos/staff-and-students-at-grad-ceremony.jpg"
+              alt="Grace Schools staff and students gathered at the graduation ceremony"
+              className="w-full h-full object-cover"
+            />
+          </figure>
+          <figcaption className="text-xs text-gray-500 mt-3 text-center">
+            Staff and learners at the 2025 graduation ceremony.
+          </figcaption>
+        </div>
+      </div>
+
       {/* Content */}
       <article className="py-16 bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -63,6 +80,15 @@ export default function OurStoryPage() {
           <h2 className="text-2xl font-bold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
             A Director's Message
           </h2>
+          <figure className="mb-6 rounded-2xl overflow-hidden aspect-[3/2] bg-[var(--color-surface-dark)]">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/student-photos/grad-ceremony-speaker.jpg"
+              alt="A speaker addressing the school community at the graduation ceremony"
+              className="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </figure>
           <blockquote className="border-l-4 border-[var(--color-gold)] bg-[var(--color-surface)] pl-5 py-4 mb-6 italic text-gray-700">
             "From humble beginnings, this school has grown to become a sanctuary of excellence, faith,
             and opportunity. We are building a legacy of academic and moral excellence, cultivating

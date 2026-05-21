@@ -11,34 +11,40 @@ type Slide = {
 
 const slides: Slide[] = [
   {
-    src: "https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=1600&q=80&auto=format&fit=crop",
-    alt: "Students engaged in classroom learning",
+    src: "/student-photos/students-class-activity-1.jpg",
+    alt: "Grace Schools learners working through a class activity together",
     caption: "Active Classrooms",
     sub: "CBC-aligned, learner-centred teaching across every grade.",
   },
   {
-    src: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1600&q=80&auto=format&fit=crop",
-    alt: "Children reading at school",
-    caption: "A Love of Learning",
-    sub: "Building confident readers and critical thinkers from day one.",
+    src: "/student-photos/kindergarteners-studying.jpg",
+    alt: "Young learners focused on their work in class",
+    caption: "Foundational Years",
+    sub: "Building confident readers and curious thinkers from day one.",
   },
   {
-    src: "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=1600&q=80&auto=format&fit=crop",
-    alt: "School library and resources",
-    caption: "Resources to Fuel Curiosity",
-    sub: "From the library to the recording studio, every interest has a home.",
+    src: "/student-photos/students-outside-learning.jpg",
+    alt: "Students learning outdoors on the school grounds",
+    caption: "Beyond the Classroom",
+    sub: "Learning is not confined to four walls. The world is part of the syllabus.",
   },
   {
-    src: "https://images.unsplash.com/photo-1581726690015-c9861fa5057f?w=1600&q=80&auto=format&fit=crop",
-    alt: "Students collaborating",
-    caption: "Community & Character",
-    sub: "Faith-grounded learning, with leadership built into school life.",
+    src: "/student-photos/students-in-recording-studio.jpg",
+    alt: "Students recording in the school's recording studio",
+    caption: "The Recording Studio",
+    sub: "A purpose-built creative space for music, voice, and performance.",
   },
   {
-    src: "https://images.unsplash.com/photo-1571260899304-425eee4c7efc?w=1600&q=80&auto=format&fit=crop",
-    alt: "Students playing sports",
-    caption: "Sports, Music & Beyond",
-    sub: "Spacious playgrounds, recording studio, and a vibrant clubs life.",
+    src: "/student-photos/students-athleticism-showcase.jpg",
+    alt: "Grace Schools learners showcasing athletic ability",
+    caption: "Sports & Athletics",
+    sub: "Spacious playgrounds, sports days, and a strong physical-education culture.",
+  },
+  {
+    src: "/student-photos/music-class-drums.jpg",
+    alt: "Students playing drums during a music class",
+    caption: "Music & Performance",
+    sub: "Drums, voice, and the rhythm of a school that loves to play and perform.",
   },
 ];
 

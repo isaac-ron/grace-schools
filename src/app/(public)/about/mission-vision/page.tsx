@@ -110,6 +110,28 @@ export default function MissionVisionPage() {
               </div>
             ))}
           </div>
+
+          {/* Values in action — assembly banner */}
+          <figure className="mt-12 relative rounded-2xl overflow-hidden aspect-[21/9] bg-[var(--color-crimson-dark)] shadow-lg">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/student-photos/students-assembly.jpg"
+              alt="Grace Schools learners gathered together at an assembly"
+              className="absolute inset-0 w-full h-full object-cover"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-crimson-dark)]/85 via-[var(--color-crimson-dark)]/30 to-transparent" />
+            <figcaption className="absolute bottom-0 left-0 right-0 p-6 sm:p-10 text-white">
+              <span className="inline-flex items-center gap-2 text-[10px] sm:text-xs font-semibold tracking-[0.25em] uppercase text-[var(--color-gold-light)] mb-2">
+                <span className="w-6 h-px bg-[var(--color-gold-light)]" />
+                Lived, Not Listed
+              </span>
+              <p className="text-base sm:text-lg max-w-2xl text-red-100" style={{ fontFamily: "var(--font-heading)" }}>
+                Our values come to life every morning at assembly, where the whole school gathers as
+                one community to begin the day.
+              </p>
+            </figcaption>
+          </figure>
         </div>
       </section>
     </>

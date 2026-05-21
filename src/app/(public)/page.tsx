@@ -5,40 +5,40 @@ import SchoolGallery from "@/components/SchoolGallery";
 
 const notices = [
   {
+    kind: "Celebration",
+    kindClass: "bg-[var(--color-gold)] text-[var(--color-crimson-dark)]",
+    date: "Class of 2025",
+    title: "A Jubilant Graduation",
+    body: "We sent off our finalists with song, dance, and heartfelt gratitude. A celebration of every learner who walked the journey with us, and the families who walked alongside them.",
+    icon: "celebration",
+    image: "/student-photos/grad-party-dancing-1.jpg",
+  },
+  {
     kind: "Event",
     kindClass: "bg-[var(--color-blue-accent)] text-white",
     date: "19 May 2026",
     title: "Student Election 2026",
     body: "A vibrant exercise in civic responsibility. Candidates campaigned, classmates voted, and our newly elected student leaders are ready to serve.",
     icon: "how_to_vote",
-    image: "https://images.unsplash.com/photo-1591115765373-5207764f72e7?w=1200&q=80&auto=format&fit=crop",
+    image: "/student-photos/students-casting-ballots.jpg",
   },
   {
     kind: "Innovation",
     kindClass: "bg-[var(--color-crimson)] text-white",
     date: "Term 2, 2026",
     title: "Student Innovations Showcase",
-    body: "From science projects to creative arts pieces, our learners continue to surprise us. Recent projects are being curated for an upcoming showcase.",
+    body: "From costume design to creative arts projects, our learners continue to surprise us. Recent pieces are being curated for an upcoming showcase.",
     icon: "lightbulb",
-    image: "https://images.unsplash.com/photo-1567168544813-cc03465b4fa8?w=1200&q=80&auto=format&fit=crop",
+    image: "/student-photos/students-innovative-costumes.jpg",
   },
   {
-    kind: "Programme",
-    kindClass: "bg-[var(--color-gold)] text-[var(--color-crimson-dark)]",
-    date: "Open Enrolment",
-    title: "Computer Packages Training",
-    body: "Affordable, certified Computer Packages training with flexible schedules. Free for Grace Schools learners who complete Junior Secondary.",
-    icon: "workspace_premium",
-    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1200&q=80&auto=format&fit=crop",
-  },
-  {
-    kind: "Notice",
+    kind: "Community",
     kindClass: "bg-[var(--color-blue-accent)] text-white",
-    date: "Now Open",
-    title: "2026 Admissions",
-    body: "Applications are open for Grades 1–9. Both day and boarding options available. Visit the school office or apply online today.",
-    icon: "campaign",
-    image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1200&q=80&auto=format&fit=crop",
+    date: "Always",
+    title: "Built With Our Community",
+    body: "Parents, families, and neighbours show up for our learners in every season. Grace Schools is woven into the fabric of Chepilat, and we wouldn't have it any other way.",
+    icon: "diversity_3",
+    image: "/student-photos/parents-and-community-participating.jpg",
   },
 ];
 
@@ -364,9 +364,9 @@ export default function HomePage() {
               <div className="absolute inset-0 bg-[var(--color-blue-accent)] mix-blend-multiply opacity-10" />
 
               <div className="relative p-8 sm:p-10">
-                <span className="inline-flex items-center gap-2 bg-[var(--color-blue-accent)] text-white text-xs font-semibold px-3 py-1 rounded-full mb-5">
-                  <span className="material-symbols-outlined text-[14px]">how_to_vote</span>
-                  Event &middot; {notices[0].date}
+                <span className={`inline-flex items-center gap-2 text-xs font-semibold px-3 py-1 rounded-full mb-5 ${notices[0].kindClass}`}>
+                  <span className="material-symbols-outlined text-[14px]">{notices[0].icon}</span>
+                  {notices[0].kind} &middot; {notices[0].date}
                 </span>
                 <h3
                   className="text-2xl sm:text-3xl font-bold mb-3"

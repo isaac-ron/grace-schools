@@ -36,6 +36,20 @@ export default function LowerPrimaryPage() {
         </div>
       </div>
 
+      {/* Hero image */}
+      <div className="bg-white">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 sm:-mt-12 relative z-10">
+          <figure className="rounded-2xl overflow-hidden shadow-xl ring-1 ring-black/5 aspect-[16/9] bg-[var(--color-surface-dark)]">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/student-photos/kindergarteners-studying.jpg"
+              alt="Lower primary learners focused at their desks"
+              className="w-full h-full object-cover"
+            />
+          </figure>
+        </div>
+      </div>
+
       <article className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 
