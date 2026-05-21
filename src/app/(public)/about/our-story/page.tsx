@@ -78,22 +78,13 @@ export default function OurStoryPage() {
           </p>
 
           <h2 className="text-2xl font-bold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
-            A Director's Message
+            A Director&apos;s Message
           </h2>
-          <figure className="mb-6 rounded-2xl overflow-hidden aspect-[3/2] bg-[var(--color-surface-dark)]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/student-photos/grad-ceremony-speaker.jpg"
-              alt="A speaker addressing the school community at the graduation ceremony"
-              className="w-full h-full object-cover"
-              loading="lazy"
-            />
-          </figure>
           <blockquote className="border-l-4 border-[var(--color-gold)] bg-[var(--color-surface)] pl-5 py-4 mb-6 italic text-gray-700">
-            "From humble beginnings, this school has grown to become a sanctuary of excellence, faith,
+            &ldquo;From humble beginnings, this school has grown to become a sanctuary of excellence, faith,
             and opportunity. We are building a legacy of academic and moral excellence, cultivating
-            integrity and purpose in every student we welcome."
-            <footer className="not-italic text-sm text-gray-500 mt-3">Pst. Walter Ong'ala, Director</footer>
+            integrity and purpose in every student we welcome.&rdquo;
+            <footer className="not-italic text-sm text-gray-500 mt-3">Pst. Walter Ong&apos;ala, Director</footer>
           </blockquote>
 
           <h2 className="text-2xl font-bold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
