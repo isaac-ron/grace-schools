@@ -1,4 +1,19 @@
-import Link from "next/link";
+import type { Metadata } from "next";
+import {
+  ButtonLink,
+  Figure,
+  Note,
+  PageHero,
+  Prose,
+  Section,
+  SubjectList,
+} from "@/components/ui";
+
+export const metadata: Metadata = {
+  title: "Upper Primary | The Grace Schools Chepilat",
+  description:
+    "Upper Primary at The Grace Schools covers Grades 4 to 6: core and elective learning areas under the CBE curriculum.",
+};
 
 const coreSubjects = [
   "English",
@@ -6,129 +21,89 @@ const coreSubjects = [
   "Mathematics",
   "Integrated Science",
   "Social Studies",
-  "Religious Education (CRE / IRE)",
-  "Creative Arts & Sports",
-  "Agriculture & Nutrition",
+  "Religious Education, CRE or IRE",
+  "Creative Arts and Sports",
+  "Agriculture and Nutrition",
 ];
 
 const electiveSubjects = [
   "Home Science",
-  "Art & Craft",
+  "Art and Craft",
   "Music",
   "Business Studies",
   "Computer Science",
-  "German / French / Mandarin (Languages)",
+  "French, German or Mandarin",
 ];
 
 export default function UpperPrimaryPage() {
   return (
     <>
-      <div className="bg-[var(--color-crimson)] text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <nav className="text-xs text-red-300 mb-4 flex items-center gap-1 flex-wrap">
-            <Link href="/" className="hover:text-white">Home</Link>
-            <span className="material-symbols-outlined text-[14px]">chevron_right</span>
-            <Link href="/curriculum" className="hover:text-white">Curriculum</Link>
-            <span className="material-symbols-outlined text-[14px]">chevron_right</span>
-            <span className="text-white">Upper Primary</span>
-          </nav>
-          <span className="inline-block text-xs font-semibold bg-white/20 px-3 py-1 rounded-full mb-4">
-            Grades 4 – 6
-          </span>
-          <h1 className="text-4xl sm:text-5xl font-bold" style={{ fontFamily: "var(--font-heading)" }}>
-            Upper Primary
-          </h1>
-          <p className="mt-4 text-red-100 max-w-2xl">
-            Deepening knowledge, building identity, and discovering individual strengths.
+      <PageHero
+        trail={[
+          { href: "/", label: "Home" },
+          { href: "/curriculum", label: "Curriculum" },
+        ]}
+        title="Upper Primary"
+        lede="Grades 4 to 6. Depth across core and elective learning areas, and the habit of working things out."
+      />
+
+      <Figure
+        src="/student-photos/students-class-activity-1.jpg"
+        alt="Upper Primary learners working through a class activity together"
+        className="aspect-[16/9] max-h-[480px] sm:aspect-[21/9]"
+        priority
+        sizes="100vw"
+      />
+
+      <Section>
+        <Prose>
+          <p className="text-lg text-ink">
+            Upper Primary covers Grades 4, 5 and 6. The activity based learning of
+            the early years gives way to distinct learning areas, and learners
+            start to take responsibility for their own work.
           </p>
+
+          <h2>Our approach</h2>
+          <p>
+            Teaching moves from broad activities to subject discipline, while
+            keeping the practical, competency based method that CBE is built on.
+            Learners investigate, present and defend their reasoning rather than
+            reciting it.
+          </p>
+          <p>
+            This is also where electives begin, so a child who is drawn to music,
+            business or computing can follow it while the core stays broad.
+          </p>
+
+          <h2>Core learning areas</h2>
+        </Prose>
+
+        <div className="mx-auto mt-6 max-w-[68ch]">
+          <SubjectList items={coreSubjects} />
         </div>
-      </div>
 
-      {/* Hero image */}
-      <div className="bg-white">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 sm:-mt-12 relative z-10">
-          <figure className="rounded-2xl overflow-hidden shadow-xl ring-1 ring-black/5 aspect-[16/9] bg-[var(--color-surface-dark)]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/student-photos/two-students-portrait.jpg"
-              alt="Two upper primary learners at Grace Schools"
-              className="w-full h-full object-cover"
-            />
-          </figure>
+        <div className="mx-auto mt-12 max-w-[68ch]">
+          <h2 className="mb-6 text-2xl text-ink">Electives</h2>
+          <SubjectList items={electiveSubjects} />
         </div>
-      </div>
 
-      <article className="py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-
-          <div className="h-1 w-16 bg-[var(--color-crimson)] rounded mb-10" />
-
-          <p className="text-lg text-gray-700 leading-relaxed mb-8">
-            Upper Primary (Grades 4, 5, and 6) builds on the strong foundation of Lower Primary by
-            introducing a broader range of subjects and encouraging learners to begin identifying
-            their interests, talents, and learning pathways within the CBC framework.
-          </p>
-
-          <h2 className="text-2xl font-bold text-gray-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
-            Our Approach
-          </h2>
-          <p className="text-gray-600 leading-relaxed mb-4">
-            Teaching in Upper Primary moves towards more structured subject delivery while maintaining
-            the learner-centred philosophy of CBC. Learners engage with projects, presentations, and
-            collaborative tasks that develop critical thinking, communication, and problem-solving skills.
-          </p>
-          <p className="text-gray-600 leading-relaxed mb-10">
-            Assessment combines continuous formative assessment with summative assessments at the end
-            of each term, helping learners and parents track progress in a meaningful way.
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
-            <div>
-              <h2 className="text-xl font-bold text-gray-900 mb-5" style={{ fontFamily: "var(--font-heading)" }}>
-                Core Subjects
-              </h2>
-              <div className="space-y-2">
-                {coreSubjects.map((s) => (
-                  <div key={s} className="flex items-center gap-3 p-3 bg-[var(--color-cream)] rounded-lg">
-                    <span className="w-2 h-2 rounded-full bg-[var(--color-crimson)] flex-shrink-0" />
-                    <span className="text-sm text-gray-700">{s}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div>
-              <h2 className="text-xl font-bold text-gray-900 mb-5" style={{ fontFamily: "var(--font-heading)" }}>
-                Elective / Optional Subjects
-              </h2>
-              <div className="space-y-2">
-                {electiveSubjects.map((s) => (
-                  <div key={s} className="flex items-center gap-3 p-3 bg-[var(--color-cream)] rounded-lg">
-                    <span className="w-2 h-2 rounded-full bg-[var(--color-gold)] flex-shrink-0" />
-                    <span className="text-sm text-gray-700">{s}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div className="flex flex-wrap gap-4">
-            <Link
-              href="/curriculum/lower-primary"
-              className="inline-flex items-center gap-2 border border-gray-200 hover:border-[var(--color-crimson)] text-gray-700 hover:text-[var(--color-crimson)] text-sm font-semibold px-6 py-2.5 rounded-full transition-colors"
-            >
-              <span className="material-symbols-outlined text-[16px]">arrow_back</span>
-              Lower Primary
-            </Link>
-            <Link
-              href="/curriculum/junior-school"
-              className="inline-flex items-center gap-2 bg-[var(--color-crimson)] hover:bg-[var(--color-crimson-dark)] text-white text-sm font-semibold px-6 py-2.5 rounded-full transition-colors"
-            >
-              Junior Secondary
-              <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
-            </Link>
-          </div>
+        <div className="mx-auto mt-12 max-w-[68ch]">
+          <Note title="How Upper Primary is assessed">
+            Marks are recorded as percentages and reported against the four national
+            achievement levels: Exceeding, Meeting, Approaching and Below
+            Expectation. There is no class ranking, which CBE removes by design.
+          </Note>
         </div>
-      </article>
+
+        <div className="mx-auto mt-12 flex max-w-[68ch] flex-wrap gap-3 border-t border-line pt-8">
+          <ButtonLink href="/curriculum/junior-school">
+            Junior School next
+          </ButtonLink>
+          <ButtonLink href="/curriculum/lower-primary" variant="secondary">
+            Back to Lower Primary
+          </ButtonLink>
+        </div>
+      </Section>
     </>
   );
 }

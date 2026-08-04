@@ -1,125 +1,103 @@
-import Link from "next/link";
+import type { Metadata } from "next";
 import { SITE } from "@/lib/site";
+import {
+  ButtonLink,
+  Icon,
+  PageHero,
+  Row,
+  Ruled,
+  Section,
+} from "@/components/ui";
+
+export const metadata: Metadata = {
+  title: "Staff Portal | The Grace Schools Chepilat",
+  description:
+    "The Grace Schools staff portal: daily register, mark entry, assignments and school administration.",
+};
 
 const features = [
   {
-    icon: "grading",
-    title: "Enter Marks & Reports",
-    body: "Teachers record termly grades, assessment scores, and competency comments for their classes.",
+    marker: "Register",
+    title: "Daily register",
+    body: "Everyone starts present and only the exceptions are tapped. A register marked with no signal is kept on the device and sent when the connection returns.",
   },
   {
-    icon: "groups",
-    title: "Class Lists & Attendance",
-    body: "View enrolled learners per class, mark daily attendance, and flag concerns to administration.",
+    marker: "Marks",
+    title: "Mark entry",
+    body: "One class and one assessment at a time, usable on a phone. Achievement levels are computed from the raw mark, never typed in twice.",
   },
   {
-    icon: "payments",
-    title: "Bursar Tools",
-    body: "Bursar staff can post fee receipts, view balances, and trigger parent SMS notifications.",
+    marker: "Work",
+    title: "Assignments",
+    body: "Set work, post materials, and grade the photographs learners send back from home.",
   },
   {
-    icon: "admin_panel_settings",
-    title: "Admin Oversight",
-    body: "Management can monitor school-wide performance, oversee staff activity, and generate reports.",
+    marker: "Office",
+    title: "Administration",
+    body: "Learners, classes, staff accounts, terms, fee balances and the year-end promotion, with an audit log behind every change to a mark.",
   },
 ];
 
 export default function StaffPortalPage() {
   return (
     <>
-      <div className="bg-[var(--color-crimson)] text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <nav className="text-xs text-red-300 mb-4 flex items-center gap-1">
-            <Link href="/" className="hover:text-white">Home</Link>
-            <span className="material-symbols-outlined text-[14px]">chevron_right</span>
-            <span className="text-white">Staff Portal</span>
-          </nav>
-          <span className="inline-block text-xs font-semibold bg-[var(--color-gold)] text-[var(--color-crimson-dark)] px-3 py-1 rounded-full mb-4">
-            Coming Soon
-          </span>
-          <h1 className="text-4xl sm:text-5xl font-bold" style={{ fontFamily: "var(--font-heading)" }}>
-            Staff Portal
-          </h1>
-          <p className="mt-4 text-red-100 max-w-xl">
-            The internal workspace for teachers, the bursar, and management, purpose-built around
-            how Grace Schools actually runs day-to-day.
+      <PageHero
+        trail={[{ href: "/", label: "Home" }]}
+        title="Staff Portal"
+        lede="Where teachers take the register, enter marks and set work, and where the office runs the school record."
+      />
+
+      <Section>
+        <div className="border border-t-2 border-line border-t-gold bg-surface p-6 sm:p-8">
+          <h2 className="font-heading text-xl text-ink">Access is issued by the office</h2>
+          <p className="mt-3 max-w-2xl text-base leading-relaxed text-ink-soft">
+            Staff accounts are created by administration with a temporary password
+            you change on first sign in. If you have not been given one, or you have
+            been locked out, speak to the office rather than trying to register.
+          </p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <ButtonLink href="/contact">Contact the office</ButtonLink>
+            <a
+              href={`tel:${SITE.phones[0].tel}`}
+              className="inline-flex min-h-[44px] items-center justify-center gap-2
+                         rounded-md border border-line-strong px-6 text-sm font-semibold
+                         text-ink transition-colors duration-200 hover:bg-card
+                         focus-visible:outline-2 focus-visible:outline-offset-2
+                         focus-visible:outline-crimson"
+            >
+              <Icon name="phone" className="h-4 w-4" />
+              {SITE.phones[0].display}
+            </a>
+          </div>
+        </div>
+
+        <div className="mt-14">
+          <h2 className="text-2xl text-ink sm:text-3xl">What staff can do</h2>
+          <div className="mt-8">
+            <Ruled>
+              {features.map((f) => (
+                <Row key={f.marker} marker={f.marker} title={f.title}>
+                  {f.body}
+                </Row>
+              ))}
+            </Ruled>
+          </div>
+        </div>
+      </Section>
+
+      <Section tone="surface">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="text-2xl text-ink">Who can see what</h2>
+          <span aria-hidden className="mx-auto mt-6 block h-px w-16 bg-gold" />
+          <p className="mt-8 text-base leading-relaxed text-ink-soft">
+            A teacher sees the classes they are assigned to and nothing else. A
+            parent sees their own children and nothing else. Results stay in draft
+            and are invisible to parents until the Headteacher releases them for the
+            term. Those limits are enforced by the database itself, not by hiding
+            buttons.
           </p>
         </div>
-      </div>
-
-      <section className="py-16 bg-[var(--color-surface)]">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-
-          {/* Coming-soon notice */}
-          <div className="bg-white border border-slate-200 rounded-2xl p-8 mb-12 flex flex-col sm:flex-row items-start gap-5 shadow-sm">
-            <div className="w-12 h-12 rounded-xl bg-red-50 flex items-center justify-center flex-shrink-0">
-              <span className="material-symbols-outlined text-[var(--color-crimson)] text-[24px]">build</span>
-            </div>
-            <div className="flex-1">
-              <h2 className="text-xl font-bold text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-                Under active development
-              </h2>
-              <p className="text-gray-600 text-sm leading-relaxed mb-4">
-                We are rebuilding the staff portal from scratch around the school's actual workflows.
-                Accounts will be created and provisioned by administration. Staff should reach out
-                to the school office for current paper-based workflows in the interim.
-              </p>
-              <div className="flex flex-wrap gap-3">
-                <a
-                  href={`mailto:${SITE.email}`}
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold bg-[var(--color-crimson)] hover:bg-[var(--color-crimson-dark)] text-white px-5 py-2 rounded-full transition-colors"
-                >
-                  <span className="material-symbols-outlined text-[16px]">mail</span>
-                  Contact Administration
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* What's included */}
-          <div className="mb-8">
-            <span className="inline-block text-xs font-semibold tracking-[0.2em] uppercase text-[var(--color-crimson)] mb-2">
-              What it will include
-            </span>
-            <h2 className="text-2xl font-bold text-gray-900" style={{ fontFamily: "var(--font-heading)" }}>
-              Tools for every role on staff
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            {features.map((f) => (
-              <div key={f.title} className="bg-white border border-slate-200 rounded-2xl p-6 hover:shadow-md transition-shadow">
-                <div className="w-10 h-10 rounded-lg bg-red-50 flex items-center justify-center mb-4">
-                  <span className="material-symbols-outlined text-[var(--color-crimson)] text-[20px]">{f.icon}</span>
-                </div>
-                <h3 className="font-bold text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-                  {f.title}
-                </h3>
-                <p className="text-sm text-gray-500 leading-relaxed">{f.body}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* Sign-in placeholder */}
-          <div className="mt-12 bg-[var(--color-crimson)] rounded-2xl p-8 text-center text-white">
-            <span className="material-symbols-outlined text-[var(--color-gold-light)] text-[32px] block mb-3">badge</span>
-            <h3 className="text-xl font-bold mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-              Staff sign-in launching soon
-            </h3>
-            <p className="text-red-100 text-sm max-w-md mx-auto mb-6">
-              Accounts will be provisioned by school administration. If you are a member of staff,
-              you'll receive your login details directly from the office.
-            </p>
-            <button
-              disabled
-              className="inline-flex items-center gap-2 bg-white/20 text-white/70 font-semibold px-6 py-2.5 rounded-full text-sm cursor-not-allowed"
-            >
-              <span className="material-symbols-outlined text-[18px]">login</span>
-              Staff Sign In (Disabled)
-            </button>
-          </div>
-        </div>
-      </section>
+      </Section>
     </>
   );
 }

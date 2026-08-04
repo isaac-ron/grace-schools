@@ -12,14 +12,11 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
+    // No icon-font stylesheet. It was a render-blocking request to Google for
+    // eighty-two decorative glyphs, paid for in mobile data by parents on 3G.
+    // The few functional marks are inline SVG in components/ui.tsx.
     <html lang="en" className="h-full">
-      <head>
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
-        />
-      </head>
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="flex min-h-full flex-col">{children}</body>
     </html>
   );
 }

@@ -1,152 +1,165 @@
 import Link from "next/link";
 import Image from "next/image";
 import { SITE } from "@/lib/site";
+import { Icon } from "@/components/ui";
+
+const aboutLinks = [
+  { href: "/about/our-story", label: "Our Story" },
+  { href: "/about/mission-vision", label: "Mission and Vision" },
+  { href: "/about/administration", label: "Administration" },
+];
+
+const curriculumLinks = [
+  { href: "/curriculum/lower-primary", label: "Lower Primary, Grades 1 to 3" },
+  { href: "/curriculum/upper-primary", label: "Upper Primary, Grades 4 to 6" },
+  { href: "/curriculum/junior-school", label: "Junior School, Grades 7 to 9" },
+];
 
 export default function Footer() {
   return (
-    <footer className="bg-[var(--color-crimson-dark)] text-white">
-      {/* Gold accent bar */}
-      <div className="h-1 bg-[var(--color-gold)]" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-
-          {/* Brand */}
-          <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center gap-3 mb-4">
-              <div className="bg-white rounded-lg p-1.5 shadow-md">
-                <Image
-                  src="/logo.jpg"
-                  alt="The Grace Schools crest"
-                  width={44}
-                  height={44}
-                  className="rounded"
-                />
-              </div>
-              <div className="leading-tight">
-                <p className="font-bold text-white text-sm uppercase tracking-wide">
+    <footer className="border-t-2 border-gold bg-crimson-deep text-white">
+      <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+          <div>
+            <Link href="/" className="mb-5 flex items-center gap-3">
+              <Image
+                src="/logo.jpg"
+                alt="The Grace Schools crest"
+                width={44}
+                height={44}
+              />
+              <span className="leading-tight">
+                <span className="block font-heading text-base text-white">
                   The Grace Schools
-                </p>
-                <p className="text-[10px] text-[var(--color-blue-accent-light)] tracking-widest uppercase">
-                  Chepilat
-                </p>
-              </div>
+                </span>
+                <span className="doc-label mt-0.5 block text-gold">Chepilat</span>
+              </span>
             </Link>
-            <p className="text-sm text-red-200 leading-relaxed italic">
-              "A School with a Difference"
+            <p className="font-heading text-lg text-gold">{SITE.motto}</p>
+            <p className="mt-3 text-sm leading-relaxed text-white/70">
+              A faith-based school running the national Competency Based Education
+              curriculum from Pre-Primary through Grade 9.
             </p>
-            <p className="text-xs text-red-300 mt-3 leading-relaxed">
-              A faith-based institution nurturing academic excellence and holistic development through the CBC curriculum.
-            </p>
           </div>
 
-          {/* About */}
-          <div>
-            <h3 className="font-semibold text-white text-sm uppercase tracking-wider mb-4">
-              About Us
-            </h3>
-            <ul className="space-y-2">
-              {[
-                { href: "/about/our-story", label: "Our Story" },
-                { href: "/about/mission-vision", label: "Mission & Vision" },
-                { href: "/about/administration", label: "Administration" },
-              ].map((l) => (
-                <li key={l.href}>
-                  <Link
-                    href={l.href}
-                    className="text-sm text-red-200 hover:text-[var(--color-gold-light)] transition-colors"
-                  >
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <FooterColumn title="About" links={aboutLinks} />
+          <FooterColumn title="Curriculum" links={curriculumLinks} />
 
-          {/* Curriculum */}
           <div>
-            <h3 className="font-semibold text-white text-sm uppercase tracking-wider mb-4">
-              CBC Curriculum
-            </h3>
-            <ul className="space-y-2">
-              {[
-                { href: "/curriculum/lower-primary", label: "Lower Primary (Gr. 1–3)" },
-                { href: "/curriculum/upper-primary", label: "Upper Primary (Gr. 4–6)" },
-                { href: "/curriculum/junior-school", label: "Junior Secondary (Gr. 7–9)" },
-              ].map((l) => (
-                <li key={l.href}>
-                  <Link
-                    href={l.href}
-                    className="text-sm text-red-200 hover:text-[var(--color-gold-light)] transition-colors"
-                  >
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h3 className="font-semibold text-white text-sm uppercase tracking-wider mb-4">
-              Get in Touch
-            </h3>
-            <ul className="space-y-3">
-              <li className="flex items-start gap-2">
-                <span className="material-symbols-outlined text-[var(--color-gold)] text-[18px] mt-0.5">location_on</span>
-                <span className="text-sm text-red-200">{SITE.address}</span>
+            <h2 className="doc-label mb-5 text-gold">Get in touch</h2>
+            <ul className="flex flex-col gap-4">
+              <li className="flex gap-3">
+                <Icon name="pin" className="mt-0.5 h-5 w-5 shrink-0 text-gold" />
+                <span className="text-sm text-white/80">{SITE.address}</span>
               </li>
-              <li className="flex items-start gap-2">
-                <span className="material-symbols-outlined text-[var(--color-gold)] text-[18px] mt-0.5">phone</span>
-                <div className="flex flex-col gap-0.5">
+              <li className="flex gap-3">
+                <Icon name="phone" className="mt-0.5 h-5 w-5 shrink-0 text-gold" />
+                <span className="flex flex-col">
                   {SITE.phones.map((p) => (
-                    <a key={p.tel} href={`tel:${p.tel}`} className="text-sm text-red-200 hover:text-[var(--color-gold-light)]">
+                    <a
+                      key={p.tel}
+                      href={`tel:${p.tel}`}
+                      className="min-h-[36px] text-sm text-white/80 transition-colors
+                                 hover:text-gold focus-visible:outline-2
+                                 focus-visible:outline-offset-2 focus-visible:outline-gold"
+                    >
                       {p.display}
                     </a>
                   ))}
-                </div>
+                </span>
               </li>
-              <li className="flex items-start gap-2">
-                <span className="material-symbols-outlined text-[var(--color-gold)] text-[18px] mt-0.5">mail</span>
-                <a href={`mailto:${SITE.email}`} className="text-sm text-red-200 hover:text-[var(--color-gold-light)] break-all">
+              <li className="flex gap-3">
+                <Icon name="mail" className="mt-0.5 h-5 w-5 shrink-0 text-gold" />
+                <a
+                  href={`mailto:${SITE.email}`}
+                  className="break-all text-sm text-white/80 transition-colors hover:text-gold
+                             focus-visible:outline-2 focus-visible:outline-offset-2
+                             focus-visible:outline-gold"
+                >
                   {SITE.email}
                 </a>
               </li>
             </ul>
-            <div className="mt-5 flex gap-2">
-              <Link
-                href="/enquiries"
-                className="text-xs bg-[var(--color-crimson)] hover:bg-[var(--color-crimson-light)] border border-red-400 text-white px-3 py-1.5 rounded-full transition-colors"
-              >
-                Enquire
-              </Link>
+
+            <div className="mt-6 flex flex-wrap gap-3">
               <Link
                 href="/apply"
-                className="text-xs bg-[var(--color-gold)] hover:bg-[var(--color-gold-light)] text-[var(--color-crimson-dark)] font-semibold px-3 py-1.5 rounded-full transition-colors"
+                className="inline-flex min-h-[44px] items-center rounded-md bg-gold px-5
+                           text-sm font-semibold text-crimson-deep transition-colors
+                           duration-200 hover:bg-gold-light focus-visible:outline-2
+                           focus-visible:outline-offset-2 focus-visible:outline-white"
               >
-                Apply Now
+                Apply
+              </Link>
+              <Link
+                href="/enquiries"
+                className="inline-flex min-h-[44px] items-center rounded-md border
+                           border-white/40 px-5 text-sm font-semibold text-white
+                           transition-colors duration-200 hover:border-gold hover:text-gold
+                           focus-visible:outline-2 focus-visible:outline-offset-2
+                           focus-visible:outline-white"
+              >
+                Enquire
               </Link>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Bottom bar */}
-      <div className="border-t border-red-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-2">
-          <p className="text-xs text-red-300">
-            © {new Date().getFullYear()} The Grace Schools Chepilat. All rights reserved.
+      <div className="border-t border-white/15">
+        <div
+          className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2
+                     px-4 py-5 sm:flex-row sm:px-6"
+        >
+          <p className="text-xs text-white/60">
+            &copy; {new Date().getFullYear()} The Grace Schools, Chepilat. All rights
+            reserved.
           </p>
-          <div className="flex items-center gap-4">
-            <Link href="/contact" className="text-xs text-red-300 hover:text-white transition-colors">
+          <div className="flex items-center gap-5">
+            <Link
+              href="/contact"
+              className="text-xs text-white/60 transition-colors hover:text-gold"
+            >
               Contact
             </Link>
-            <Link href="/enquiries" className="text-xs text-red-300 hover:text-white transition-colors">
+            <Link
+              href="/enquiries"
+              className="text-xs text-white/60 transition-colors hover:text-gold"
+            >
               Enquiries
             </Link>
           </div>
         </div>
       </div>
     </footer>
+  );
+}
+
+function FooterColumn({
+  title,
+  links,
+}: {
+  title: string;
+  links: { href: string; label: string }[];
+}) {
+  return (
+    <div>
+      <h2 className="doc-label mb-5 text-gold">{title}</h2>
+      <ul className="flex flex-col">
+        {links.map((l) => (
+          <li key={l.href}>
+            <Link
+              href={l.href}
+              className="flex min-h-[40px] items-center text-sm text-white/80
+                         transition-colors duration-150 hover:text-gold
+                         focus-visible:outline-2 focus-visible:outline-offset-2
+                         focus-visible:outline-gold"
+            >
+              {l.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }

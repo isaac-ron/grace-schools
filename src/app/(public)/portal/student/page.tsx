@@ -1,132 +1,116 @@
-import Link from "next/link";
+import type { Metadata } from "next";
 import { SITE } from "@/lib/site";
+import {
+  ButtonLink,
+  Icon,
+  PageHero,
+  Row,
+  Ruled,
+  Section,
+} from "@/components/ui";
+
+export const metadata: Metadata = {
+  title: "Parent and Student Portal | The Grace Schools Chepilat",
+  description:
+    "The Grace Schools parent portal: report cards, attendance, assignments and fee balances. Accounts are issued by the school office.",
+};
 
 const features = [
   {
-    icon: "auto_stories",
-    title: "Termly Reports",
-    body: "View your child's termly academic reports, subject scores, and teacher comments in one place.",
+    marker: "Results",
+    title: "Termly report cards",
+    body: "Achievement levels per learning area with the teacher's comment, published once the Headteacher releases the term's results.",
   },
   {
-    icon: "task_alt",
-    title: "Assessment Marks",
-    body: "Track continuous assessment results and progress across the CBC competencies as the term unfolds.",
+    marker: "Attendance",
+    title: "Daily attendance",
+    body: "The day by day record and the termly rate, taken by the class teacher each morning.",
   },
   {
-    icon: "receipt_long",
-    title: "Fee Statements",
-    body: "Check fee balances, view payment history, and receive SMS reminders for upcoming dues.",
+    marker: "Work",
+    title: "Assignments and materials",
+    body: "What has been set, what is due, and a way to send a photograph of completed work back to the teacher.",
   },
   {
-    icon: "calendar_month",
-    title: "School Calendar",
-    body: "Stay updated on term dates, exam timetables, events, and important parent notices.",
+    marker: "Fees",
+    title: "Fee balance",
+    body: "The balance the bursar holds, shown with the date it was last updated so a stale figure is never mistaken for a live one.",
   },
 ];
 
 export default function StudentPortalPage() {
   return (
     <>
-      <div className="bg-[var(--color-crimson)] text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <nav className="text-xs text-red-300 mb-4 flex items-center gap-1">
-            <Link href="/" className="hover:text-white">Home</Link>
-            <span className="material-symbols-outlined text-[14px]">chevron_right</span>
-            <span className="text-white">Student Portal</span>
-          </nav>
-          <span className="inline-block text-xs font-semibold bg-[var(--color-gold)] text-[var(--color-crimson-dark)] px-3 py-1 rounded-full mb-4">
-            Coming Soon
-          </span>
-          <h1 className="text-4xl sm:text-5xl font-bold" style={{ fontFamily: "var(--font-heading)" }}>
-            Student & Parent Portal
-          </h1>
-          <p className="mt-4 text-red-100 max-w-xl">
-            A secure space for parents and learners to follow progress, view reports, and stay in
-            touch with the school, anytime, from anywhere.
+      <PageHero
+        trail={[{ href: "/", label: "Home" }]}
+        title="Parent and Student Portal"
+        lede="A private record of your child's progress: results, attendance, assignments and fees."
+      />
+
+      <Section>
+        {/* Honest about state. The portal is real and partly built, so this says
+            what works today rather than promising a launch date. */}
+        <div className="border border-t-2 border-line border-t-gold bg-surface p-6 sm:p-8">
+          <h2 className="font-heading text-xl text-ink">
+            The portal is still being built
+          </h2>
+          <p className="mt-3 max-w-2xl text-base leading-relaxed text-ink-soft">
+            Attendance and the school register are working. Report cards and
+            assignments are in progress. Until it opens, the office will give you
+            anything you need: reports, statements or account details.
+          </p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <ButtonLink href="/contact">Contact the office</ButtonLink>
+            <a
+              href={`tel:${SITE.phones[0].tel}`}
+              className="inline-flex min-h-[44px] items-center justify-center gap-2
+                         rounded-md border border-line-strong px-6 text-sm font-semibold
+                         text-ink transition-colors duration-200 hover:bg-card
+                         focus-visible:outline-2 focus-visible:outline-offset-2
+                         focus-visible:outline-crimson"
+            >
+              <Icon name="phone" className="h-4 w-4" />
+              {SITE.phones[0].display}
+            </a>
+          </div>
+        </div>
+
+        <div className="mt-14">
+          <h2 className="text-2xl text-ink sm:text-3xl">What it will show you</h2>
+          <p className="mt-3 max-w-2xl text-base leading-relaxed text-ink-soft">
+            Built around one question a parent actually asks: how is my child doing,
+            and is there anything I need to do about it.
+          </p>
+          <div className="mt-8">
+            <Ruled>
+              {features.map((f) => (
+                <Row key={f.marker} marker={f.marker} title={f.title}>
+                  {f.body}
+                </Row>
+              ))}
+            </Ruled>
+          </div>
+        </div>
+      </Section>
+
+      <Section tone="surface">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="text-2xl text-ink">How accounts are issued</h2>
+          <span aria-hidden className="mx-auto mt-6 block h-px w-16 bg-gold" />
+          {/* PORTAL_SCOPE.md §3: there is deliberately no self-registration.
+              Anyone could otherwise claim to be a parent of any child. */}
+          <p className="mt-8 text-base leading-relaxed text-ink-soft">
+            There is no sign-up form, and that is deliberate. Anyone could fill one
+            in and claim to be a parent of any child. Instead the office creates
+            your account against your child&rsquo;s record and gives you a first
+            login, so only a guardian the school already knows can see a
+            learner&rsquo;s results.
+          </p>
+          <p className="mt-4 text-base leading-relaxed text-ink-soft">
+            One account covers the whole family, with a switcher for each child.
           </p>
         </div>
-      </div>
-
-      <section className="py-16 bg-[var(--color-surface)]">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-
-          {/* Coming-soon notice */}
-          <div className="bg-white border border-slate-200 rounded-2xl p-8 mb-12 flex flex-col sm:flex-row items-start gap-5 shadow-sm">
-            <div className="w-12 h-12 rounded-xl bg-red-50 flex items-center justify-center flex-shrink-0">
-              <span className="material-symbols-outlined text-[var(--color-crimson)] text-[24px]">construction</span>
-            </div>
-            <div className="flex-1">
-              <h2 className="text-xl font-bold text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-                The new portal is on the way
-              </h2>
-              <p className="text-gray-600 text-sm leading-relaxed mb-4">
-                We are building a redesigned portal where parents and learners can self-register and
-                track academic progress and fee balances. In the meantime, please reach out to the
-                school office for any reports, statements, or account information.
-              </p>
-              <div className="flex flex-wrap gap-3">
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold bg-[var(--color-crimson)] hover:bg-[var(--color-crimson-dark)] text-white px-5 py-2 rounded-full transition-colors"
-                >
-                  Contact the School
-                  <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
-                </Link>
-                <a
-                  href={`tel:${SITE.phones[0].tel}`}
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold border border-slate-200 hover:border-[var(--color-crimson)] text-gray-700 hover:text-[var(--color-crimson)] px-5 py-2 rounded-full transition-colors"
-                >
-                  <span className="material-symbols-outlined text-[16px]">phone</span>
-                  {SITE.phones[0].display}
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* What you'll be able to do */}
-          <div className="mb-8">
-            <span className="inline-block text-xs font-semibold tracking-[0.2em] uppercase text-[var(--color-crimson)] mb-2">
-              What you'll be able to do
-            </span>
-            <h2 className="text-2xl font-bold text-gray-900" style={{ fontFamily: "var(--font-heading)" }}>
-              Built around how families actually use it
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            {features.map((f) => (
-              <div key={f.title} className="bg-white border border-slate-200 rounded-2xl p-6 hover:shadow-md transition-shadow">
-                <div className="w-10 h-10 rounded-lg bg-red-50 flex items-center justify-center mb-4">
-                  <span className="material-symbols-outlined text-[var(--color-crimson)] text-[20px]">{f.icon}</span>
-                </div>
-                <h3 className="font-bold text-gray-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-                  {f.title}
-                </h3>
-                <p className="text-sm text-gray-500 leading-relaxed">{f.body}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* Sign-in placeholder */}
-          <div className="mt-12 bg-[var(--color-crimson)] rounded-2xl p-8 text-center text-white">
-            <span className="material-symbols-outlined text-[var(--color-gold-light)] text-[32px] block mb-3">lock</span>
-            <h3 className="text-xl font-bold mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-              Sign-in launching soon
-            </h3>
-            <p className="text-red-100 text-sm max-w-md mx-auto mb-6">
-              Parents will be able to self-register using the phone number or email they provided at
-              admission. We will notify you the moment it goes live.
-            </p>
-            <button
-              disabled
-              className="inline-flex items-center gap-2 bg-white/20 text-white/70 font-semibold px-6 py-2.5 rounded-full text-sm cursor-not-allowed"
-            >
-              <span className="material-symbols-outlined text-[18px]">login</span>
-              Sign In (Disabled)
-            </button>
-          </div>
-        </div>
-      </section>
+      </Section>
     </>
   );
 }

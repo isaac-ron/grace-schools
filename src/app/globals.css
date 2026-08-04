@@ -1,39 +1,112 @@
 @import "tailwindcss";
-@import "@fontsource-variable/playfair-display";
+@import "@fontsource-variable/source-serif-4";
 @import "@fontsource-variable/inter";
 
-@theme {
-  --color-crimson:       #8B1A1A;
-  --color-crimson-dark:  #6B0F0F;
-  --color-crimson-light: #A82828;
-  --color-gold:          #D4A017;
-  --color-gold-light:    #F0C030;
-  --color-blue-accent:        #4A7DB5;
-  --color-blue-accent-light:  #8FB4DD;
-  --color-surface:       #F8FAFC;
-  --color-surface-dark:  #E2E8F0;
-  --color-cream:         #F8FAFC;
-  --color-cream-dark:    #E2E8F0;
+/* ============================================================================
+   Crest.
 
-  --font-heading: "Playfair Display Variable", Georgia, serif;
-  --font-body:    "Inter Variable", system-ui, sans-serif;
+   The same system the portal runs, so the school reads as one institution
+   rather than a brochure and an unrelated product. Document grammar: deep
+   crimson fields, a gold hairline as the structural mark, ruled rows instead
+   of cards, and an old-style serif for display.
+
+   Tokens are identical to `../grace-portal/src/app/globals.css`. If a value
+   changes here it changes there. See ../grace-portal/DESIGN.md.
+   ========================================================================= */
+
+@theme {
+  /* --- Brand. Taken from the crest and unchanged. */
+  --color-crimson: #8b1a1a;
+  --color-crimson-dark: #6b0f0f;
+  --color-crimson-light: #a82828;
+  /* The drenched field: hero, quote bands, the footer. */
+  --color-crimson-deep: #4a0b0b;
+  --color-crimson-tint: #fbf4f1;
+  --color-gold: #d4a017;
+  --color-gold-light: #f0c030;
+  --color-blue-accent: #43678f;
+  --color-blue-accent-light: #8fb4dd;
+
+  /* --- Surfaces. Warm paper, not cool slate. */
+  --color-surface: #fbfaf8;
+  --color-surface-dark: #f0ede7;
+  --color-card: #ffffff;
+  --color-line: #e3ded5;
+  --color-line-strong: #8f8574;
+
+  /* --- Text. Warm near-black, matched to the paper. */
+  --color-ink: #1a1614;
+  --color-ink-soft: #55504a;
+  --color-ink-muted: #756c5f;
+
+  /* Legacy aliases: older pages still reference cream. */
+  --color-cream: #fbfaf8;
+  --color-cream-dark: #f0ede7;
+
+  /* --- Radius. A document has corners. */
+  --radius-sm: 1px;
+  --radius-md: 2px;
+  --radius-lg: 3px;
+  --radius-xl: 4px;
+  --radius-2xl: 4px;
+
+  --font-heading: "Source Serif 4 Variable", "Iowan Old Style", Georgia, serif;
+  --font-body: "Inter Variable", system-ui, sans-serif;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
+  color-scheme: light;
 }
 
 body {
   font-family: var(--font-body);
-  color: #1C1C1C;
-  background-color: #ffffff;
+  color: var(--color-ink);
+  background-color: var(--color-card);
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-heading);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* The document label: attached to a value or a figure, never floated above a
+   section heading as decoration. */
+.doc-label {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
