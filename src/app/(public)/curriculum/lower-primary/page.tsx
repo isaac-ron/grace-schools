@@ -42,7 +42,7 @@ export default function LowerPrimaryPage() {
       <Figure
         src="/student-photos/kindergarteners-studying.jpg"
         alt="Lower Primary learners in crimson uniforms working at their desks"
-        className="aspect-[16/9] max-h-[480px] sm:aspect-[21/9]"
+        banner
         priority
         sizes="100vw"
       />

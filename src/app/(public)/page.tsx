@@ -138,7 +138,8 @@ export default function HomePage() {
         src="/student-photos/graduating-students-1.jpg"
         alt="Graduating learners in crimson and gold gowns seated at the 2025 ceremony"
         caption="The class of 2025, in the school's own colours"
-        className="aspect-[16/9] max-h-[560px] sm:aspect-[21/9]"
+        banner
+        focus="midUpper"
         priority
         sizes="100vw"
       />

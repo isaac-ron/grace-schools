@@ -29,7 +29,8 @@ export default function OurStoryPage() {
         src="/student-photos/staff-and-students-at-grad-ceremony.jpg"
         alt="Grace Schools staff and learners gathered for the 2025 graduation ceremony"
         caption="Staff and learners at the 2025 graduation ceremony"
-        className="aspect-[16/9] max-h-[520px] sm:aspect-[21/9]"
+        banner
+        focus="midUpper"
         priority
         sizes="100vw"
       />

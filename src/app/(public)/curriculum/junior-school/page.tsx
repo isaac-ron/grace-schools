@@ -62,7 +62,8 @@ export default function JuniorSchoolPage() {
       <Figure
         src="/student-photos/graduating-students-1.jpg"
         alt="Grace Schools learners in crimson and gold gowns at the close of their Junior School journey"
-        className="aspect-[16/9] max-h-[480px] sm:aspect-[21/9]"
+        banner
+        focus="midUpper"
         priority
         sizes="100vw"
       />

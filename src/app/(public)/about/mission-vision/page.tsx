@@ -122,7 +122,7 @@ export default function MissionVisionPage() {
         src="/student-photos/students-assembly.jpg"
         alt="Grace Schools learners lined up at a school assembly beside painted banners"
         caption="Values are practised at assembly every morning, where the whole school gathers to begin the day"
-        className="aspect-[16/9] max-h-[440px] sm:aspect-[21/9]"
+        banner
         sizes="100vw"
       />
     </>

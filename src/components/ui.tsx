@@ -388,6 +388,34 @@ export function Section({
 /* -------------------------------------------------------------------------- */
 
 /**
+ * Focal points.
+ *
+ * `object-cover` on a wide band throws away most of a photograph's height, and
+ * the default centre is the wrong half often enough to matter: on the Director's
+ * portrait it cut his face off at the eyes. These are the offsets that keep the
+ * subject, chosen by rendering the actual crop rather than by guessing.
+ */
+const focalPoints = {
+  /** Subject fills the frame, or is genuinely central. */
+  center: "object-center",
+  /** Standing subject whose head sits high in the frame. */
+  upper: "object-[50%_20%]",
+  /** Seated group, or faces in the upper third. */
+  midUpper: "object-[50%_35%]",
+} as const;
+
+/**
+ * The banner ratio.
+ *
+ * One scale, defined once. Previously each page passed its own
+ * `aspect-[21/9] max-h-[Npx]` pair, and those two properties fight: once the
+ * clamp engages, the rendered ratio is set by the viewport rather than by the
+ * design, so the crop got harsher the wider the screen and differed on every
+ * page. Ratios only here, no max-height, so a crop verified once stays correct.
+ */
+const bannerRatio = "aspect-[4/3] sm:aspect-[16/9] lg:aspect-[12/5]";
+
+/**
  * A photograph with a caption.
  *
  * Full bleed and full strength. The school's archive is the one thing on this
@@ -400,6 +428,8 @@ export function Figure({
   className,
   priority = false,
   sizes = "100vw",
+  focus = "center",
+  banner = false,
 }: {
   src: string;
   alt: string;
@@ -407,9 +437,17 @@ export function Figure({
   className?: string;
   priority?: boolean;
   sizes?: string;
+  focus?: keyof typeof focalPoints;
+  banner?: boolean;
 }) {
   return (
-    <figure className={cx("relative overflow-hidden bg-crimson-deep", className)}>
+    <figure
+      className={cx(
+        "relative overflow-hidden bg-crimson-deep",
+        banner && bannerRatio,
+        className,
+      )}
+    >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={src}
@@ -417,11 +455,11 @@ export function Figure({
         sizes={sizes}
         loading={priority ? "eager" : "lazy"}
         decoding="async"
-        className="h-full w-full object-cover"
+        className={cx("h-full w-full object-cover", focalPoints[focus])}
       />
       {caption && (
         <figcaption
-          className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-crimson-deep
+          className="absolute inset-x-0 bottom-0 bg-linear-to-t from-crimson-deep
                      via-crimson-deep/75 to-transparent px-5 pb-4 pt-12 text-sm text-white/90"
         >
           {caption}

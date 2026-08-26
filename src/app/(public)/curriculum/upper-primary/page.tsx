@@ -49,8 +49,8 @@ export default function UpperPrimaryPage() {
 
       <Figure
         src="/student-photos/students-class-activity-1.jpg"
-        alt="Upper Primary learners working through a class activity together"
-        className="aspect-[16/9] max-h-[480px] sm:aspect-[21/9]"
+        alt="Upper Primary learners presenting project work to their class"
+        banner
         priority
         sizes="100vw"
       />

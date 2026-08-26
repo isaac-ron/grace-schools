@@ -41,7 +41,7 @@ export default function SchoolGallery() {
         src={lead.src}
         alt={lead.alt}
         caption={lead.caption}
-        className="aspect-[16/9] max-h-[520px] sm:aspect-[21/9]"
+        banner
         sizes="100vw"
       />
       <div className="grid gap-px bg-line sm:grid-cols-3">

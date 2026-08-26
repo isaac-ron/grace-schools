@@ -52,7 +52,10 @@ export default function AdministrationPage() {
         src="/student-photos/director-addressing-grad.jpg"
         alt="Pst. Walter Ong'ala addressing learners and parents at the graduation ceremony"
         caption="The Director addressing the school community at the 2025 graduation"
-        className="aspect-[16/9] max-h-[520px] sm:aspect-[21/9]"
+        banner
+        /* Centre cropped his face off at the eyes. He is standing, so his head
+           sits high in the frame and the crop has to be pulled upwards. */
+        focus="upper"
         priority
         sizes="100vw"
       />
