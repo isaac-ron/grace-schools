@@ -1,0 +1,86 @@
+# The Grace Schools — static export on Apache / cPanel
+# Lives in public/ so `next build` copies it into out/ on every deploy.
+
+# ---- 1. Canonical host + HTTPS -------------------------------------------
+# Forces https:// and the bare (non-www) form of the domain. To prefer www
+# instead, swap the RewriteRule target below to
+# https://www.thegraceschools.co.ke%{REQUEST_URI}
+RewriteEngine On
+
+RewriteCond %{HTTPS} !=on [OR]
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+# Never redirect /.well-known/. cPanel's AutoSSL validates over plain HTTP
+# there, and redirecting it makes certificate issuance and renewal fail.
+RewriteCond %{REQUEST_URI} !^/\.well-known/ [NC]
+RewriteRule ^ https://thegraceschools.co.ke%{REQUEST_URI} [R=301,L]
+
+# ---- 2. Clean URLs --------------------------------------------------------
+# The export writes flat files (about.html, curriculum/junior-school.html),
+# so Apache needs help serving them at /about and /curriculum/junior-school.
+
+# /index.html -> /
+RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
+RewriteRule ^ / [R=301,L]
+
+# /about.html -> /about   (only for real browser requests, not internal rewrites)
+RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
+RewriteRule ^ /%1 [R=301,L]
+
+# /about/ -> /about
+# `about` exists as BOTH a directory (subpages) and about.html, so a trailing
+# slash would otherwise hit the directory and 403.
+RewriteCond %{REQUEST_URI} ^(.+)/$
+RewriteCond %{DOCUMENT_ROOT}%1.html -f
+RewriteRule ^(.+)/$ /$1 [R=301,L]
+
+# /about -> about.html, served internally so the URL stays clean.
+#
+# There is deliberately NO `!-d` guard here. The export writes every route
+# twice: about.html AND an about/ directory holding the navigation payloads
+# Next uses for client-side routing. With a `!-d` guard this rule skipped any
+# path that matched a directory, mod_dir then appended a slash (/about ->
+# /about/), the trailing-slash rule above stripped it again, and the two
+# fought until the browser gave up. Letting the .html file win ends it:
+# mod_rewrite runs before mod_dir, so the slash is never added.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.*)$ $1.html [L]
+
+# ---- 3. Error page --------------------------------------------------------
+ErrorDocument 404 /404.html
+
+# ---- 4. No directory listings --------------------------------------------
+Options -Indexes
+DirectoryIndex index.html
+
+# ---- 5. Compression -------------------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml
+  AddOutputFilterByType DEFLATE application/javascript application/json
+  AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# ---- 6. Caching -----------------------------------------------------------
+# _next/static filenames contain a content hash, so they can be cached hard.
+# HTML must NOT be, or parents keep seeing the old site after you redeploy.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html                     "access plus 0 seconds"
+  ExpiresByType image/jpeg                    "access plus 6 months"
+  ExpiresByType image/png                     "access plus 6 months"
+  ExpiresByType image/webp                    "access plus 6 months"
+  ExpiresByType image/svg+xml                 "access plus 6 months"
+  ExpiresByType image/x-icon                  "access plus 6 months"
+  ExpiresByType font/woff2                    "access plus 1 year"
+  ExpiresByType text/css                      "access plus 1 year"
+  ExpiresByType application/javascript        "access plus 1 year"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+  <FilesMatch "\.(js|css|woff2|jpg|jpeg|png|webp|svg|ico)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+</IfModule>

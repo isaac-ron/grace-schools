@@ -108,7 +108,7 @@ export default function HomePage() {
             priority
           />
           <p className="doc-label mt-6 text-gold">
-            Chepilat, Kenya &middot; Founded {SITE.founded}
+            Founded {SITE.founded}
           </p>
           <h1 className="mt-4 text-4xl text-white sm:text-5xl lg:text-6xl">
             {SITE.name}
