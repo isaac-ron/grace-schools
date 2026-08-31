@@ -26,7 +26,7 @@ const coreSubjects = [
   "Pre-Technical and Pre-Career Education",
   "Creative Arts",
   "Sports and Physical Education",
-  "Religious Education, CRE or IRE",
+  "Religious Education",
 ];
 
 const pathways = [

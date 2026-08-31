@@ -21,7 +21,7 @@ const coreSubjects = [
   "Mathematics",
   "Integrated Science",
   "Social Studies",
-  "Religious Education, CRE or IRE",
+  "Religious Education",
   "Creative Arts and Sports",
   "Agriculture and Nutrition",
 ];
@@ -32,7 +32,6 @@ const electiveSubjects = [
   "Music",
   "Business Studies",
   "Computer Science",
-  "French, German or Mandarin",
 ];
 
 export default function UpperPrimaryPage() {
@@ -91,7 +90,7 @@ export default function UpperPrimaryPage() {
           <Note title="How Upper Primary is assessed">
             Marks are recorded as percentages and reported against the four national
             achievement levels: Exceeding, Meeting, Approaching and Below
-            Expectation. There is no class ranking, which CBE removes by design.
+            Expectation.
           </Note>
         </div>
 
